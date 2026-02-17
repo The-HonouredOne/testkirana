@@ -6,7 +6,7 @@ export const products = [
     category: "GROCERY",
     quantity: "5kg",
     price: 245,
-    image: "/images/atta.jpg",
+    image: "https://imgs.search.brave.com/DG8xQLrnPNyV3u7cEfY62r7KZqXN7QDI8DMELE_Rcd0/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly93d3cu/c2h1dHRlcnN0b2Nr/LmNvbS9pbWFnZS1p/bGx1c3RyYXRpb24v/c2hvcHBpbmctYmFz/a2V0LWZ1bGwtZ3Jv/Y2VyeS1wcm9kdWN0/cy0yNjBudy0yNDYx/MTY2NTYzLmpwZw",
   },
   {
     id: "p2",
@@ -15,7 +15,7 @@ export const products = [
     category: "DAIRY",
     quantity: "1Ltr",
     price: 54,
-    image: "/images/milk.jpg",
+    image: "https://imgs.search.brave.com/DG8xQLrnPNyV3u7cEfY62r7KZqXN7QDI8DMELE_Rcd0/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly93d3cu/c2h1dHRlcnN0b2Nr/LmNvbS9pbWFnZS1p/bGx1c3RyYXRpb24v/c2hvcHBpbmctYmFz/a2V0LWZ1bGwtZ3Jv/Y2VyeS1wcm9kdWN0/cy0yNjBudy0yNDYx/MTY2NTYzLmpwZw",
   },
   {
     id: "p3",
@@ -24,6 +24,6 @@ export const products = [
     category: "SNACKS",
     quantity: "50g",
     price: 20,
-    image: "/images/chips.jpg",
+    image: "https://imgs.search.brave.com/DG8xQLrnPNyV3u7cEfY62r7KZqXN7QDI8DMELE_Rcd0/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly93d3cu/c2h1dHRlcnN0b2Nr/LmNvbS9pbWFnZS1p/bGx1c3RyYXRpb24v/c2hvcHBpbmctYmFz/a2V0LWZ1bGwtZ3Jv/Y2VyeS1wcm9kdWN0/cy0yNjBudy0yNDYx/MTY2NTYzLmpwZw",
   },
 ];
