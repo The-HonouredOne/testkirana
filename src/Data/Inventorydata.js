@@ -1,0 +1,58 @@
+const inventoryData = [
+  {
+    id: 1,
+    name: "Fresh Tomatoes",
+    image: "/assets/milk.png",
+    sku: "TOM-RED-01",
+    category: "Vegetables",
+    stock: 45,
+    price: 40,
+  },
+  {
+    id: 2,
+    name: "Green Broccoli",
+    image: "/assets/fruit.png",
+    sku: "BRC-GRN-12",
+    category: "Vegetables",
+    stock: 2,
+    price: 120,
+  },
+  {
+    id: 3,
+    name: "Yellow Bananas",
+    image: "/assets/milk.png",
+    sku: "BAN-YLW-05",
+    category: "Fruits",
+    stock: 0,
+    price: 60,
+  },
+  {
+    id: 4,
+    name: "Organic Milk",
+    image: "/assets/fruit.png",
+    sku: "MLK-ORG-22",
+    category: "Dairy",
+    stock: 18,
+    price: 75,
+  },
+  {
+    id: 5,
+    name: "Face Wash",
+    image: "/assets/milk.png",
+    sku: "SKN-FW-09",
+    category: "Skincare",
+    stock: 7,
+    price: 199,
+  },
+  {
+    id: 6,
+    name: "Brown Bread",
+    image: "/assets/fruit.png",
+    sku: "BAK-BRD-02",
+    category: "Bakery",
+    stock: 0,
+    price: 35,
+  },
+];
+
+export default inventoryData;
