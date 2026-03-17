@@ -210,7 +210,7 @@ const InventoryTable = () => {
           <button
             disabled={page === 1}
             onClick={() => setPage(page - 1)}
-            className="px-3 py-1 rounded-lg border disabled:opacity-40"
+            className="px-3 py-1 rounded-lg border text-gray-400"
           >
             Previous
           </button>

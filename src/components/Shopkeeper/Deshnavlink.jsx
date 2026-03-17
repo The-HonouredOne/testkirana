@@ -75,7 +75,7 @@ const MerchantNav = () => {
       </div>
 
       {/* MOBILE BOTTOM NAV */}
-      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 pt-2 shadow-md md:hidden flex justify-around py-2">
+      <div className="fixed bottom-0 left-0  right-0 bg-white border-t border-gray-200 pt-2 shadow-md md:hidden flex justify-around py-2">
 
         <NavLink to="" end className={({ isActive }) =>
           `flex flex-col items-center text-xs ${

@@ -274,17 +274,24 @@ export default function StoreProfileSettings() {
       </div>
 
       {/* Sticky Footer */}
-      <div className="fixed bottom-0 mb-15 items-center md:right-40 lg:right-115 bg-green-100 rounded-xl border-t border-slate-100 shadow-lg px-4 py-3 z-50">
-        <div className="max-w-2xl mx-auto flex gap-2">
-          <button onClick={() => { setSaved(true); setTimeout(() => setSaved(false), 2500); }}
-            className={`flex-1 py-3.5 rounded-2xl px-2 text-white text-sm font-bold transition-all cursor-pointer border-none shadow-md ${saved ? "bg-emerald-700" : "bg-emerald-500 hover:bg-emerald-600 shadow-emerald-200"}`}>
-            {saved ? "✓ Saved!" : "💾 Save Changes / बदलाव सुरक्षित करें"}
-          </button>
-          <button className="px-5 py-3.5 rounded-2xl border border-slate-200 bg-slate-50 text-slate-600 text-sm font-semibold cursor-pointer hover:bg-slate-100 transition-colors">
-            Cancel
-          </button>
-        </div>
-      </div>
+    <div className="fixed bottom-20 left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] max-w-2xl bg-emerald-50/95 backdrop-blur-sm rounded-2xl border border-emerald-200 shadow-2xl p-3 z-50 transition-all animate-fade-in-up">
+  <div className="flex items-center gap-3">
+    
+    <button 
+      onClick={() => { setSaved(true); setTimeout(() => setSaved(false), 2500); }}
+      className={`flex-1 py-2 rounded-xl px-4 text-white text-sm font-bold transition-all cursor-pointer border-none shadow-md flex justify-center items-center ${
+        saved ? "bg-emerald-700 shadow-emerald-700/30" : "bg-emerald-500 hover:bg-emerald-600 shadow-emerald-500/30"
+      }`}
+    >
+      {saved ? "✓ Saved Successfully!" : "💾 Save Changes / बदलाव सुरक्षित करें"}
+    </button>
+
+    <button className="px-6 py-3.5 rounded-xl border border-slate-200 bg-white text-slate-700 text-sm font-bold cursor-pointer hover:bg-slate-50 hover:border-slate-300 transition-colors shadow-sm">
+      Cancel
+    </button>
+    
+  </div>
+</div>
     </div>
   );
 } 
