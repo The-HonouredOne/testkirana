@@ -12,14 +12,14 @@ const InventoryHeader = ({ onSearch, onAdd }) => {
 
   return (
     <>
-      <div className="p-1">
+      <div className="p-1 sm:px-3">
 
         {/* Top Section */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
 
           {/* Left Side */}
           <div className="md:flex-col flex justify-between">
-            <div className=""><h1 className="text-xl md:text-2xl font-bold text-gray-800">
+            <div className=""><h1 className="text-2xl md:text-2xl font-bold text-gray-800">
               Inventory Management
             </h1>
               <p className="text-sm text-gray-500 mt-1 hidden md:block">

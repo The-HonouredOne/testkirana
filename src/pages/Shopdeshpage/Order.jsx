@@ -10,7 +10,7 @@ const Order = () => {
 
     return (
 
-        <div className="px-2 md:p-6 space-y-6 bg-gray-50 ">
+        <div className="px-2 md:px-6 space-y-6 bg-gray-50 ">
 
             <DashboardHeader />
 
