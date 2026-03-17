@@ -1,5 +1,5 @@
 import Navbar from "./components/navbar/Navbar";
-import ShopCard from "./components//navbar/ShopCard";
+import ShopCard from "./components/navbar/ShopCard"; // Fixed the double slash in your import
 import BottomNav from "./components/navbar/BottomNav";
 import Home from "./pages/Home";
 import { Route, Routes, useLocation } from "react-router-dom";
@@ -11,26 +11,21 @@ import { Inventory } from "./pages/Shopdeshpage/Inventory";
 import { Profile } from "./pages/Shopdeshpage/Profile";
 import Earning from "./pages/Shopdeshpage/Earning";
 
-
-
 function App() {
   const location = useLocation();
 
-
-  // const hideNavbarFooter = ["/Shopdesh","/Order"];
-  const shouldHide = location.pathname.startsWith("/Shopdesh");
-
+  // FIX: Convert the pathname to lowercase to prevent case-sensitivity bugs!
+  const currentPath = location.pathname.toLowerCase();
+  const shouldHide = currentPath.startsWith("/shopdesh");
 
   return (
     <>
+      {/* If we are NOT on a shopdesh page, show Navbar */}
       {!shouldHide && <Navbar location="Model Town, Delhi" />}
 
-
-      {/* <Navbar location="Model Town, Delhi" /> */}
-
-      {/* MAIN CONTENT */}
-      {/* <Home/> */}
       <ScrollToTop />
+      
+      {/* MAIN CONTENT */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/store/:storeId" element={<StorePage />} />
@@ -43,9 +38,8 @@ function App() {
         </Route>
       </Routes>
 
+      {/* If we are NOT on a shopdesh page, show BottomNav */}
       {!shouldHide && <BottomNav active="home" />}
-
-      {/* <BottomNav active="home" /> */}
     </>
   );
 }
