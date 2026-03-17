@@ -1,12 +1,13 @@
 // components/Navbar.jsx
 import React, { memo } from "react";
 import { Search, ShoppingCart, User } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Navbar = memo(({ location }) => {
   return (
     <header className="w-full bg-white shadow-sm border-b">
       <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
-        
+
         {/* Logo + Location */}
         <div className="flex items-center gap-3 min-w-0">
           <div className="bg-green-600 text-white p-2 rounded-lg">
@@ -36,8 +37,10 @@ const Navbar = memo(({ location }) => {
         {/* Icons */}
         <div className="flex items-center gap-4">
           <ShoppingCart className="cursor-pointer" size={20} />
-          <User className="cursor-pointer" size={20} />
-        </div>
+
+          <Link to="/Shopdesh">
+            <User className="cursor-pointer" size={20} />
+          </Link>        </div>
       </div>
     </header>
   );
