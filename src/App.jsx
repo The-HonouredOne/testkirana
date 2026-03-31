@@ -1,6 +1,5 @@
 import Navbar from "./components/navbar/Navbar";
 import ShopCard from "./components/navbar/ShopCard"; // Fixed the double slash in your import
-import BottomNav from "./components/navbar/BottomNav";
 import Home from "./pages/Home";
 import { Route, Routes, useLocation } from "react-router-dom";
 import StorePage from "./pages/StorePage";
@@ -17,13 +16,19 @@ import Customers from "./pages/Adminpages/Customers";
 import Orders from "./pages/Adminpages/Orders";
 import Merchants from "./pages/Adminpages/Merchants";
 import Logistics from "./pages/Adminpages/Logistics";
+import Costumerdesh from "./components/Costumer/Costumerdesh";
+// import Grosary from "./pages/Customers/Grosary";
+import Customerorder from "./pages/Customers/Orders";
+import Categorys from "./pages/Customers/Categorys";
+import CustomerProfile from "./pages/Customers/CustomerProfile";
+import Grosary from "./pages/Customers/Grosary";
 
 function App() {
   const location = useLocation();
 
   // FIX: Convert the pathname to lowercase to prevent case-sensitivity bugs!
   const currentPath = location.pathname.toLowerCase();
-const hideRoutes = ["/shopdesh", "/admindash"];
+const hideRoutes = ["/shopdesh", "/admindash","/costumerdesh"];
 
 const shouldHide = hideRoutes.some(route =>
   currentPath.startsWith(route)
@@ -31,14 +36,19 @@ const shouldHide = hideRoutes.some(route =>
   return (
     <>
       {/* If we are NOT on a shopdesh page, show Navbar */}
-      {!shouldHide && <Navbar location="Model Town, Delhi" />}
+      {!shouldHide }
 
       <ScrollToTop />
 
       {/* MAIN CONTENT */}
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Costumerdesh />} >
+                  <Route index element={<Grosary />} />
+                  <Route path="Customerorder" element={<Customerorder />} />
+                  <Route path="Categorys" element={<Categorys />} />
+                  <Route path="CustomerProfile" element={<CustomerProfile />} />
         <Route path="/store/:storeId" element={<StorePage />} />
+        </Route>
 
         <Route path="/Shopdesh" element={<Shopdesh />} >
           <Route index element={<Order />} />
@@ -55,10 +65,12 @@ const shouldHide = hideRoutes.some(route =>
           <Route path="Setting" element={<Setting />} />
 
         </Route>
+                  {/* <Route path="Costumerdesh" element={<Costumerdesh />} /> */}
+
       </Routes>
 
       {/* If we are NOT on a shopdesh page, show BottomNav */}
-      {!shouldHide && <BottomNav active="home" />}
+      {!shouldHide }
     </>
   );
 }

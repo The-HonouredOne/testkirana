@@ -7,30 +7,35 @@ import {
   Tooltip,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
-import LiveAlerts from "./Alert";
+import LiveAlerts from "./Alert"; // Make sure this path is correct in your project
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip);
 
+// ADDED: An 'orders' array to each dataset to hold the order counts
 const dataSets = {
   "7days": {
     labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
     data: [900, 1300, 800, 1700, 1100, 2100, 1520],
     prev: [750, 1100, 950, 1400, 1050, 1800, 1300],
+    orders: [45, 65, 40, 85, 55, 105, 76],
   },
   "1month": {
     labels: ["W1", "W2", "W3", "W4"],
     data: [5200, 7100, 6400, 8420],
     prev: [4800, 6500, 5900, 7800],
+    orders: [260, 355, 320, 421],
   },
   "3month": {
     labels: ["Jan", "Feb", "Mar"],
     data: [18200, 21500, 19800],
     prev: [16000, 19200, 18400],
+    orders: [910, 1075, 990],
   },
   year: {
     labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
     data: [15000, 21000, 18000, 24000, 26000, 22000, 27000, 25000, 29000, 30000, 31000, 33000],
     prev: [12000, 18000, 15000, 20000, 22000, 19000, 23000, 21000, 25000, 27000, 28000, 30000],
+    orders: [750, 1050, 900, 1200, 1300, 1100, 1350, 1250, 1450, 1500, 1550, 1650],
   },
 };
 
@@ -82,7 +87,17 @@ export default function Dashrevenuechart() {
         cornerRadius: 8,
         displayColors: false,
         callbacks: {
-          label: (ctx) => `$${ctx.raw.toLocaleString()}`,
+          // UPDATED: Now returns an array to create multiple lines in the tooltip
+          label: (ctx) => {
+            const revenue = `$${ctx.raw.toLocaleString()}`;
+            // ctx.dataIndex gives us the index of the bar we are hovering over,
+            // which we use to pull the exact order count from our current dataset.
+            const orderCount = current.orders[ctx.dataIndex].toLocaleString();
+            return [
+              `Revenue: ${revenue}`,
+              `Orders: ${orderCount}`
+            ];
+          },
         },
       },
     },
@@ -107,8 +122,7 @@ export default function Dashrevenuechart() {
 
   return (
     <>
-      <div className="sm:flex mt-5 gap-5 px-4">
-        {/* // FIX 1: Added min-w-0, overflow-hidden, and reduced mobile padding to p-4 */}
+      <div className="sm:flex mt-5 gap-5 px-1">
         <div className="w-full max-w-full min-w-0 overflow-hidden bg-white rounded-2xl border border-gray-100 p-4 sm:p-5 sm:px-7 shadow-lg">
 
           <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-6">
@@ -125,7 +139,6 @@ export default function Dashrevenuechart() {
               </span>
             </div>
 
-            {/* FIX 2: Added w-full on mobile, and flex-1 to buttons so they fit the screen cleanly */}
             <div className="flex w-full sm:w-auto bg-gray-50 border border-gray-100 rounded-xl p-1 gap-1 self-start">
               {ranges.map((r) => (
                 <button
@@ -142,7 +155,6 @@ export default function Dashrevenuechart() {
             </div>
           </div>
 
-          {/* FIX 3: Ensured min-w-0 is on the chart wrapper as well */}
           <div className="relative w-full min-w-0 h-[200px] sm:h-[280px] lg:h-[330px]">
             <Bar key={animKey} data={chartData} options={options} />
           </div>
@@ -161,6 +173,5 @@ export default function Dashrevenuechart() {
         </div>
       </div>
     </>
-
   );
 }
