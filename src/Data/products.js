@@ -20,9 +20,8 @@ export const products = [
     unit: "kg",
 
     price: 245,
-<<<<<<< HEAD
     image: "https://imgs.search.brave.com/DG8xQLrnPNyV3u7cEfY62r7KZqXN7QDI8DMELE_Rcd0/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly93d3cu/c2h1dHRlcnN0b2Nr/LmNvbS9pbWFnZS1p/bGx1c3RyYXRpb24v/c2hvcHBpbmctYmFz/a2V0LWZ1bGwtZ3Jv/Y2VyeS1wcm9kdWN0/cy0yNjBudy0yNDYx/MTY2NTYzLmpwZw",
-=======
+
     discountPrice: 230,
 
     stock: 50,
@@ -56,8 +55,7 @@ export const products = [
     shopkeeperNote: "Best selling product",
 
     createdAt: "2025-12-01",
-    updatedAt: "2026-03-01"
->>>>>>> shopkeeper
+    updatedAt: "2026-03-01",
   },
 
   {
@@ -81,9 +79,7 @@ export const products = [
     unit: "ltr",
 
     price: 54,
-<<<<<<< HEAD
     image: "https://imgs.search.brave.com/DG8xQLrnPNyV3u7cEfY62r7KZqXN7QDI8DMELE_Rcd0/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly93d3cu/c2h1dHRlcnN0b2Nr/LmNvbS9pbWFnZS1p/bGx1c3RyYXRpb24v/c2hvcHBpbmctYmFz/a2V0LWZ1bGwtZ3Jv/Y2VyeS1wcm9kdWN0/cy0yNjBudy0yNDYx/MTY2NTYzLmpwZw",
-=======
     discountPrice: 50,
 
     stock: 120,
@@ -110,7 +106,6 @@ export const products = [
 
     createdAt: "2026-01-20",
     updatedAt: "2026-03-01"
->>>>>>> shopkeeper
   },
 
   {
@@ -134,11 +129,9 @@ export const products = [
     unit: "g",
 
     price: 20,
-<<<<<<< HEAD
     image: "https://imgs.search.brave.com/DG8xQLrnPNyV3u7cEfY62r7KZqXN7QDI8DMELE_Rcd0/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly93d3cu/c2h1dHRlcnN0b2Nr/LmNvbS9pbWFnZS1p/bGx1c3RyYXRpb24v/c2hvcHBpbmctYmFz/a2V0LWZ1bGwtZ3Jv/Y2VyeS1wcm9kdWN0/cy0yNjBudy0yNDYx/MTY2NTYzLmpwZw",
-  },
-];
-=======
+  
+
     discountPrice: 18,
 
     stock: 80,
@@ -161,4 +154,3 @@ export const products = [
     updatedAt: "2026-03-01"
   }
 ];
->>>>>>> shopkeeper
