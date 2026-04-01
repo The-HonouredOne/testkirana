@@ -17,14 +17,14 @@ const LocationMap = ({ location, onConfirm, onClose }) => {
 
           <button
             onClick={onClose}
-            className="p-1 rounded-full hover:bg-gray-100 transition"
+            className="p-1 rounded-full hover:bg-gray-100 transition"    
           >
             <X size={20} />
-          </button>
+          </button>   
         </div>
 
         {/* Map */}
-        <div className="relative h-[320px]">
+        <div className="relative h-[320px]"> 
           <iframe
             title="map"
             width="100%"
