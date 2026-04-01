@@ -47,7 +47,12 @@ const AdminTopNavbar = () => {
 
         {/* Notification Bell */}
         <button className="relative p-2 cursor-pointer text-gray-400 hover:text-[#0f5c46] hover:bg-green-50 rounded-xl transition-all active:scale-95">
+          <Link 
+                  to="" 
+                  onClick={() => setOpenProfile(false)}
+                >
           <Bell size={22} />
+                </Link>
           {/* Animated Notification Dot */}
           <span className="absolute top-1.5 right-2 flex h-2.5 w-2.5">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>

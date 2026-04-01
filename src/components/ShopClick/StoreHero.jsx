@@ -22,7 +22,7 @@ const StoreHero = memo(({ store }) => {
           <span className="bg-gray-700 px-3 py-1 text-xs rounded-full">
             {store.distance} KM
           </span>
-        </div>
+        </div> 
 
         <h1 className="text-2xl md:text-4xl font-bold">
           {store.name}

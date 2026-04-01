@@ -20,7 +20,7 @@ export default function SearchBar() {
             focus:border-green-500
             transition
           "
-        />
+        /> 
 
         <button
           className="

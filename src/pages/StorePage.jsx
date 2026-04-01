@@ -97,6 +97,7 @@ function StorePage() {
 
   return (
     <>
+    
       <StoreHero store={store} />
 
       <CategoryTabs
