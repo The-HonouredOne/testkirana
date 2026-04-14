@@ -1,7 +1,11 @@
-// components/ProductCard.jsx
 import React, { memo } from "react";
+import { useCart } from "../Context.jsx/Cartcontext";
+// import { useCart } from "../context/CartContext";
 
-const ProductCard = memo(({ product, onAdd }) => {
+const ProductCard = memo(({ product }) => {
+
+  const { addToCart } = useCart();
+
   return (
     <article className="bg-white rounded-xl shadow-sm p-4 hover:shadow-md transition">
 
@@ -13,6 +17,7 @@ const ProductCard = memo(({ product, onAdd }) => {
       />
 
       <div className="mt-3">
+
         <p className="text-xs text-green-600 uppercase">
           {product.category}
         </p>
@@ -26,17 +31,20 @@ const ProductCard = memo(({ product, onAdd }) => {
         </p>
 
         <div className="flex justify-between items-center mt-2">
+
           <span className="font-semibold">
             ₹{product.price}
           </span>
 
           <button
-            onClick={() => onAdd(product)}
+            onClick={() => addToCart(product)}
             className="bg-green-600 text-white w-8 h-8 rounded-full flex items-center justify-center"
           >
             +
           </button>
+
         </div>
+
       </div>
     </article>
   );

@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo, useCallback } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { useParams } from "react-router-dom";
 
 import { getStoreById, getProductsByStore } from "../services/storeService";
@@ -8,23 +8,32 @@ import CategoryTabs from "../components/ShopClick/CategoryTabs";
 import ProductGrid from "../components/ShopClick/ProductGrid";
 import FloatingCartBar from "../components/ShopClick/FloatingCartBar";
 import DesktopFooter from "../components/ShopClick/DesktopFooter";
+import { useCart } from "../components/Context.jsx/Cartcontext";
+
+// import { useCart } from "../context/CartContext";
 
 function StorePage() {
+
   const { storeId } = useParams();
 
   const [store, setStore] = useState(null);
   const [products, setProducts] = useState([]);
   const [activeCategory, setActiveCategory] = useState("");
-  const [cart, setCart] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // 🔹 Fetch via service layer
+  const { addToCart } = useCart();
+
+  // Fetch store + products
+
   useEffect(() => {
+
     let isMounted = true;
 
     async function loadData() {
+
       try {
+
         setLoading(true);
 
         const [storeData, productData] = await Promise.all([
@@ -33,6 +42,7 @@ function StorePage() {
         ]);
 
         if (isMounted) {
+
           setStore(storeData);
           setProducts(productData);
 
@@ -41,13 +51,20 @@ function StorePage() {
           }
 
           setLoading(false);
+
         }
+
       } catch (err) {
+
         if (isMounted) {
-          setError("Something went wrong");
+
+          setError("Failed to load store");
           setLoading(false);
+
         }
+
       }
+
     }
 
     loadData();
@@ -55,49 +72,52 @@ function StorePage() {
     return () => {
       isMounted = false;
     };
+
   }, [storeId]);
 
-  // 🔹 Memoized category list
+  // Categories
+
   const categories = useMemo(() => {
     return [...new Set(products.map((p) => p.category))];
   }, [products]);
 
-  // 🔹 Filter products
+  // Filtered products
+
   const filteredProducts = useMemo(() => {
-    return products.filter((p) => p.category === activeCategory);
+
+    if (!activeCategory) return products;
+
+    return products.filter(
+      (p) => p.category === activeCategory
+    );
+
   }, [products, activeCategory]);
 
-  // 🔹 Stable add to cart
-  const handleAddToCart = useCallback((product) => {
-    setCart((prev) => [...prev, product]);
-  }, []);
-
-  // 🔹 Cart total
-  const cartTotal = useMemo(() => {
-    return cart.reduce((sum, item) => sum + item.price, 0);
-  }, [cart]);
-
   if (loading) {
+
     return (
       <div className="min-h-screen flex items-center justify-center">
         <p className="text-gray-500">Loading store...</p>
       </div>
     );
+
   }
 
   if (error) {
+
     return (
       <div className="min-h-screen flex items-center justify-center text-red-500">
         {error}
       </div>
     );
+
   }
 
   if (!store) return null;
 
   return (
-    <>
-    
+    <div className="min-h-screen bg-gray-50">
+
       <StoreHero store={store} />
 
       <CategoryTabs
@@ -106,21 +126,26 @@ function StorePage() {
         onChange={setActiveCategory}
       />
 
-      <main className="px-4 py-8 max-w-7xl mx-auto">
+      <main className="px-4 py-6 max-w-7xl mx-auto">
+
         <ProductGrid
           products={filteredProducts}
-          onAdd={handleAddToCart}
+          onAdd={addToCart}
         />
+
       </main>
 
-      <FloatingCartBar
-        itemsCount={cart.length}
-        total={cartTotal}
-      />
+      {/* Mobile Floating Cart */}
+
+      <FloatingCartBar />
+
+      {/* Desktop footer */}
 
       <DesktopFooter />
-    </>
+
+    </div>
   );
+
 }
 
 export default StorePage;

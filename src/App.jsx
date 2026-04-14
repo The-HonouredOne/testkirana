@@ -22,10 +22,16 @@ import Customerorder from "./pages/Customers/Orders";
 import Categorys from "./pages/Customers/Categorys";
 import CustomerProfile from "./pages/Customers/CustomerProfile";
 import Grosary from "./pages/Customers/Grosary";
+import CartPage from "./pages/Customers/Cart";
+import { useState } from "react";
+import UserProfile from "./pages/Customers/CustomerProfile";
+import WalletPage from "./components/Costumer/Wallatepage";
+import SupportPage from "./components/Costumer/Supportpsge";
 
 function App() {
   const location = useLocation();
 
+  const [isCartOpen, setIsCartOpen] = useState(false);
   // FIX: Convert the pathname to lowercase to prevent case-sensitivity bugs!
   const currentPath = location.pathname.toLowerCase();
 const hideRoutes = ["/shopdesh", "/admindash","/costumerdesh"];
@@ -46,9 +52,13 @@ const shouldHide = hideRoutes.some(route =>
                   <Route index element={<Grosary />} />
                   <Route path="Customerorder" element={<Customerorder />} />
                   <Route path="Categorys" element={<Categorys />} />
-                  <Route path="CustomerProfile" element={<CustomerProfile />} />
-        <Route path="/store/:storeId" element={<StorePage />} />
+
         </Route>
+                  <Route path="UserProfile" element={<UserProfile />} />
+                  <Route path="WalletPage" element={<WalletPage />} />
+                  <Route path="SupportPage" element={<SupportPage />} />
+                  <Route path="cart" element={<CartPage />} />
+        <Route path="/store/:storeId" element={<StorePage />} />
 
         <Route path="/Shopdesh" element={<Shopdesh />} >
           <Route index element={<Order />} />
@@ -71,6 +81,8 @@ const shouldHide = hideRoutes.some(route =>
 
       {/* If we are NOT on a shopdesh page, show BottomNav */}
       {!shouldHide }
+
+      <CartPage isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
     </>
   );
 }
