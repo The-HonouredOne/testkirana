@@ -1,5 +1,5 @@
 import React, { memo, useEffect } from "react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 import {
   Search,
   ChevronDown,
@@ -12,6 +12,7 @@ import {
 import ShopExplorer from "../Costumer/Shopcategory";
 import LocationSelector from "../Costumer/Addresh";
 import { useState } from "react";
+import { useCart } from "../Context.jsx/Cartcontext";
 
 const Navbar = memo(({ location = "Sector 45, Gurgaon" }) => {
   const [isLocationOpen, setIsLocationOpen] = useState(false);
@@ -29,6 +30,11 @@ const Navbar = memo(({ location = "Sector 45, Gurgaon" }) => {
   const mobileLinkStyle = ({ isActive }) =>
     `flex flex-col items-center justify-center w-full pt-2 pb-1 gap-1 text-[10px] font-extrabold transition-colors ${isActive ? "text-[#0f5c46]" : "text-gray-400 hover:text-gray-600"
     }`;
+
+
+  const navigate = useNavigate();
+  const { itemsCount } = useCart();
+
 
   return (
     <>
@@ -61,15 +67,15 @@ const Navbar = memo(({ location = "Sector 45, Gurgaon" }) => {
               </Link>
 
               {/* Dynamic Location Dropdown */}
-              <div onClick={() => setIsLocationOpen(true)} className="flex flex-col justify-center border-l border-gray-200 pl-0 md:pl-6 cursor-pointer group min-w-0">
+              <div className="flex flex-col justify-center border-l border-gray-200 pl-0 md:pl-6 cursor-pointer group min-w-0">
                 <span className="text-[10px]  hidden md:block font-bold text-gray-400 uppercase tracking-widest">
                   Your Neighborhood
                 </span>
-                 <h1 className="text-xl md:hidden block font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-[#0f5c46] to-[#20b2aa] tracking-tighter">
+                <h1 className="text-xl md:hidden block font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-[#0f5c46] to-[#20b2aa] tracking-tighter">
                   Kinaticz
                   {/* <span className="text-[#0f5c46]">.</span> */}
                 </h1>
-                <div className="flex items-center gap-1 text-[#2d3132] group-hover:text-[#0f5c46] transition-colors min-w-0">
+                <div onClick={() => setIsLocationOpen(true)} className="flex items-center gap-1 text-[#2d3132] group-hover:text-[#0f5c46] transition-colors min-w-0">
                   <span className="text-[14px] md:text-[15px] font-bold truncate max-w-[130px] md:max-w-[155px]">
                     {location}
                   </span>
@@ -103,15 +109,27 @@ const Navbar = memo(({ location = "Sector 45, Gurgaon" }) => {
               {/* Action Icons */}
               <div className="flex items-center gap-4">
                 {/* Cart Icon (Visible on all screens) */}
-                <Link to="/cart" className="relative p-2 text-gray-600 hover:text-[#0f5c46] hover:bg-green-50 rounded-full transition-colors">
-                  <ShoppingCart size={22} strokeWidth={2.5} />
+                {/* <Link to="/cart" className="relative p-2 text-gray-600 hover:text-[#0f5c46] hover:bg-green-50 rounded-full transition-colors"> */}
+
+                  <button onClick={() => navigate("/cart")}
+                    className="relative p-2 text-gray-600 hover:text-[#0f5c46] hover:bg-green-50 rounded-full transition-colors">
+
+                    <ShoppingCart size={22} strokeWidth={2.5} />
+                    {itemsCount > 0 && (
+                      // <span className="ml-1 text-green-600 font-bold">
                   <span className="absolute top-0 right-0 bg-[#dc2626] text-white text-[9px] font-extrabold h-4 w-4 flex items-center justify-center rounded-full border-2 border-white">
-                    2
-                  </span>
-                </Link>
+                        {itemsCount}
+                    
+                  {/* </span>  */}
+                      </span>
+                    )}
+                  </button>
+
+                  {/* 
+                {/* </Link> */}
 
                 {/* Profile Icon (Hidden on mobile as it moves to bottom nav. Uses /Shopdesh route from Comp 1) */}
-                <Link to="/CustomerProfile" className="hidden md:flex p-2 text-gray-600 hover:text-[#0f5c46] hover:bg-green-50 rounded-full transition-colors">
+                <Link to="/UserProfile" className="hidden md:flex p-2 text-gray-600 hover:text-[#0f5c46] hover:bg-green-50 rounded-full transition-colors">
                   <User size={22} strokeWidth={2.5} />
                 </Link>
               </div>
@@ -141,7 +159,7 @@ const Navbar = memo(({ location = "Sector 45, Gurgaon" }) => {
 
           <NavLink to="" className={mobileLinkStyle}>
             <ShoppingBag size={20} strokeWidth={2.5} />
-            <span>Groceries</span> 
+            <span>Groceries</span>
           </NavLink>
 
           <NavLink to="/Customerorder" className={mobileLinkStyle}>
@@ -155,7 +173,7 @@ const Navbar = memo(({ location = "Sector 45, Gurgaon" }) => {
           </NavLink>
 
           {/* Profile link moved here for mobile, tracking back to /Shopdesh */}
-          <NavLink to="/CustomerProfile" className={mobileLinkStyle}>
+          <NavLink to="/UserProfile" className={mobileLinkStyle}>
             <User size={20} strokeWidth={2.5} />
             <span>Profile</span>
           </NavLink>

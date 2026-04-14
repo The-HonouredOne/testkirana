@@ -12,7 +12,7 @@ const CategoryTabs = memo(({ categories, active, onChange }) => {
             className={`py-3 whitespace-nowrap text-sm font-medium transition ${
               active === cat
                 ? "text-green-600 border-b-2 border-green-600"
-                : "text-gray-500"
+                : "text-gray-600"
             }`}
           >
             {cat}
