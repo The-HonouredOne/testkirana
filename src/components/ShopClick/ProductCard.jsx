@@ -1,6 +1,5 @@
 import React, { memo } from "react";
-import { useCart } from "../Context.jsx/Cartcontext";
-// import { useCart } from "../context/CartContext";
+import { useCart } from "../Context/Cartcontext";
 
 const ProductCard = memo(({ product }) => {
 

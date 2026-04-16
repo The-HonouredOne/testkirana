@@ -34,7 +34,7 @@ const NearbyStores = ({ userLocation }) => {
     const displayStores = useMemo(() => stores.slice(0, 6), [stores]);
 
     return (
-        <section className="bg-[#F9F9F9] py-8 mb-12 sm:py-10 px-4 md:px-12 lg:px-30">
+        <section className="bg-[#F9F9F9] py-8 sm:py-10 px-4 md:px-12 lg:px-30">
             {/* HEADER WITH CONTROLS */}
             <div className="flex justify-between items-center mb-4 sm:mb-7">
                 <div>

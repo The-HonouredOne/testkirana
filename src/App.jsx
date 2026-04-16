@@ -27,6 +27,8 @@ import { useState } from "react";
 import UserProfile from "./pages/Customers/CustomerProfile";
 import WalletPage from "./components/Costumer/Wallatepage";
 import SupportPage from "./components/Costumer/Supportpsge";
+import Desktopfooter from "./components/ShopClick/DesktopFooter";
+import FloatingCartBar from "./components/ShopClick/FloatingCartBar";
 
 function App() {
   const location = useLocation();
@@ -34,30 +36,30 @@ function App() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   // FIX: Convert the pathname to lowercase to prevent case-sensitivity bugs!
   const currentPath = location.pathname.toLowerCase();
-const hideRoutes = ["/shopdesh", "/admindash","/costumerdesh"];
+  const hideRoutes = ["/shopdesh", "/admindash", "/costumerdesh"];
 
-const shouldHide = hideRoutes.some(route =>
-  currentPath.startsWith(route)
-);
+  const shouldHide = hideRoutes.some(route =>
+    currentPath.startsWith(route)
+  );
   return (
     <>
       {/* If we are NOT on a shopdesh page, show Navbar */}
-      {!shouldHide }
+      {!shouldHide}
 
       <ScrollToTop />
 
       {/* MAIN CONTENT */}
       <Routes>
         <Route path="/" element={<Costumerdesh />} >
-                  <Route index element={<Grosary />} />
-                  <Route path="Customerorder" element={<Customerorder />} />
-                  <Route path="Categorys" element={<Categorys />} />
+          <Route index element={<Grosary />} />
+          <Route path="Customerorder" element={<Customerorder />} />
+          <Route path="Categorys" element={<Categorys />} />
 
         </Route>
-                  <Route path="UserProfile" element={<UserProfile />} />
-                  <Route path="WalletPage" element={<WalletPage />} />
-                  <Route path="SupportPage" element={<SupportPage />} />
-                  <Route path="cart" element={<CartPage />} />
+        <Route path="UserProfile" element={<UserProfile />} />
+        <Route path="WalletPage" element={<WalletPage />} />
+        <Route path="SupportPage" element={<SupportPage />} />
+        <Route path="cart" element={<CartPage />} />
         <Route path="/store/:storeId" element={<StorePage />} />
 
         <Route path="/Shopdesh" element={<Shopdesh />} >
@@ -75,14 +77,17 @@ const shouldHide = hideRoutes.some(route =>
           <Route path="Setting" element={<Setting />} />
 
         </Route>
-                  {/* <Route path="Costumerdesh" element={<Costumerdesh />} /> */}
+        {/* <Route path="Costumerdesh" element={<Costumerdesh />} /> */}
 
       </Routes>
-
+      <div className="hidden md:block">
+        <Desktopfooter />
+      </div>
       {/* If we are NOT on a shopdesh page, show BottomNav */}
-      {!shouldHide }
+      {!shouldHide}
 
       <CartPage isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
+              <FloatingCartBar />
     </>
   );
 }

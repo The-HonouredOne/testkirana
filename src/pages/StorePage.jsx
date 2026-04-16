@@ -8,7 +8,8 @@ import CategoryTabs from "../components/ShopClick/CategoryTabs";
 import ProductGrid from "../components/ShopClick/ProductGrid";
 import FloatingCartBar from "../components/ShopClick/FloatingCartBar";
 import DesktopFooter from "../components/ShopClick/DesktopFooter";
-import { useCart } from "../components/Context.jsx/Cartcontext";
+import { useCart } from "../components/Context/Cartcontext";
+// import { useCart } from "../components/Context.jsx/Cartcontext";
 
 // import { useCart } from "../context/CartContext";
 
@@ -141,7 +142,7 @@ function StorePage() {
 
       {/* Desktop footer */}
 
-      <DesktopFooter />
+      {/* <DesktopFooter /> */}
 
     </div>
   );

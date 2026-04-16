@@ -12,7 +12,8 @@ import {
 import ShopExplorer from "../Costumer/Shopcategory";
 import LocationSelector from "../Costumer/Addresh";
 import { useState } from "react";
-import { useCart } from "../Context.jsx/Cartcontext";
+import { useCart } from "../Context/Cartcontext";
+// import { useCart } from "../Context.jsx/Cartcontext";
 
 const Navbar = memo(({ location = "Sector 45, Gurgaon" }) => {
   const [isLocationOpen, setIsLocationOpen] = useState(false);

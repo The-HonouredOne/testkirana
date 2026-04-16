@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import ShopExplorer from "../../components/Costumer/Shopcategory";
 import Liquids from "../../components/Costumer/Liquids";
 import NearbyStores from "../../components/Costumer/Nearbystore";
+import LifestyleCategories from "../../components/Costumer/Stores&lifestyle";
+import ProductDisplay from "../../components/Costumer/Stores&lifestyle";
+import GrocerySection from "../../components/Costumer/GrocerySection";
 
 const Grosary = () => {
   const [userLocation, setUserLocation] = useState(null);
@@ -54,6 +57,9 @@ const Grosary = () => {
       {!loading && userLocation && (
         <NearbyStores userLocation={userLocation} />
       )}
+      {/* <LifestyleCategories/> */}
+      <ProductDisplay />
+      <GrocerySection />
     </div>
   );
 };

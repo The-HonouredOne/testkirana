@@ -43,7 +43,7 @@ export const shops = [
       minimumOrder: 200,
     },
 
-    categories: ["Snacks", "Beverages", "Frozen Food"],
+    categories: ["Snacks", "Beverages","Grocery", "Frozen Food"],
 
     status: {
       isOpen: true,
@@ -105,7 +105,7 @@ export const shops = [
       minimumOrder: 200,
     },
 
-    categories: ["Snacks", "Beverages", "Frozen Food"],
+    categories: ["Snacks","Grocery","Dairy","Sweets","Spices","Dry Fruits", "Beverages", "Frozen Food"],
 
     status: {
       isOpen: true,
@@ -161,7 +161,7 @@ export const shops = [
       minimumOrder: 150,
     },
 
-    categories: ["Snacks", "Beverages", "Frozen Food"],
+    categories: ["Snacks", "Beverages", "Dairy","Sweets","Spices","Dry Fruits","Frozen Food"],
 
     status: {
       isOpen: true,
@@ -328,7 +328,7 @@ export const shops = [
       minimumOrder: 200,
     },
 
-    categories: ["Snacks", "Beverages", "Frozen Food"],
+    categories: ["Snacks", "Beverages", "Dairy","Sweets","Spices","Dry Fruits","Frozen Food"],
 
     status: {
       isOpen: true,
@@ -493,7 +493,7 @@ export const shops = [
       minimumOrder: 200,
     },
 
-    categories: ["Snacks", "Beverages", "Frozen Food"],
+    categories: ["Snacks", "Beverages","Dairy","Sweets","Spices","Dry Fruits", "Frozen Food"],
 
     status: {
       isOpen: true,

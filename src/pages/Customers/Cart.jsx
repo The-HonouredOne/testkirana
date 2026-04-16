@@ -1,6 +1,7 @@
 import React from "react";
-import { useCart } from "../../components/Context.jsx/Cartcontext";
+// import { useCart } from "../../components/Context.jsx/Cartcontext";
 import { useNavigate } from "react-router-dom";
+import { useCart } from "../../components/Context/Cartcontext";
 
 // Pass isOpen state and an onClose function from your parent component (e.g., Navbar)
 const CartDrawer = ({ isOpen = true, onClose }) => {
