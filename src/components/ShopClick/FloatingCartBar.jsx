@@ -1,13 +1,42 @@
-import React, { memo } from "react";
+import React, { memo, useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useCart } from "../Context/Cartcontext";
 import { ChevronRight } from "lucide-react";
+// import { useScroll } from "framer-motion";
 
 const FloatingCartBar = memo(() => {
   // Pull cart data from context
   const { cart } = useCart(); 
   const navigate = useNavigate();
   const location = useLocation();
+
+  const [showUI, setShowUI] = useState(true);
+
+
+useEffect(() => {
+  let lastScrollY = window.scrollY;
+
+  const handleScroll = () => {
+    const currentScrollY = window.scrollY;
+
+    // prevent micro scroll jitter
+    if (Math.abs(currentScrollY - lastScrollY) < 10) return;
+
+    if (currentScrollY > lastScrollY) {
+      // 👉 scrolling DOWN → show UI
+      setShowUI(true);
+    } else {
+      // 👉 scrolling UP → hide UI
+      setShowUI(false);
+    }
+
+    lastScrollY = currentScrollY;
+  };
+
+  window.addEventListener("scroll", handleScroll);
+  return () => window.removeEventListener("scroll", handleScroll);
+}, []);
+
 
   // ==========================================
   // ROUTE HIDING LOGIC
@@ -26,9 +55,14 @@ const FloatingCartBar = memo(() => {
 
   // Grab ONLY the last 3 items added to the cart
   const recentItems = cart?.slice(-3) || [];
+  // const { showUI } = useScroll();
+
+
 
   return (
-    <div className="fixed bottom-[70px] md:hidden left-0 right-0 z-[100] flex justify-center pointer-events-none px-4">
+    <div className={`fixed md:hidden left-0 right-0 z-[100] flex justify-center pointer-events-none px-4
+  ${showUI ? "bottom-4" : "bottom-18"}`}
+      >
       
       {/* DYNAMIC PILL CONTAINER
         pointer-events-auto ensures only the pill is clickable, not the invisible wrapper.
@@ -36,7 +70,7 @@ const FloatingCartBar = memo(() => {
       */}
       <div 
         onClick={() => navigate("/cart")}
-        className="pointer-events-auto w-max bg-[#105d47] rounded-full shadow-[0_8px_22px_rgba(15,92,70,0.4)] flex items-center h-[52px] pl-2 pr-4 active:scale-[0.96] transition-all duration-300 cursor-pointer animate-in slide-in-from-bottom-5 fade-in"
+        className="pointer-events-auto w-max bg-[#047a59] rounded-full shadow-[0_8px_20px_rgba(15,62,40,0.4)] flex items-center h-[52px] pl-2 pr-4 active:scale-[0.96] transition-all duration-300 cursor-pointer animate-in slide-in-from-bottom-5 fade-in"
       >
         
         {/* ========================================== */}
@@ -64,7 +98,7 @@ const FloatingCartBar = memo(() => {
         {/* MIDDLE: Item Count (No Price)              */}
         {/* ========================================== */}
         <div className="flex flex-col text-white mr-3 shrink-0">
-          <span className="text-[13x] font-bold leading-tight tracking-wide">
+          <span className="text-[13x] font-semibold leading-tight tracking-wide">
             {itemsCount} Item{itemsCount > 1 ? 's' : ''}
           </span>
         </div>
@@ -72,8 +106,8 @@ const FloatingCartBar = memo(() => {
         {/* ========================================== */}
         {/* RIGHT: View Cart Arrow with Divider        */}
         {/* ========================================== */}
-        <div className="flex items-center gap-0.5 font-bold text-[15px] text-emerald-100 pl-3 py-1 border-l border-emerald-700/50 shrink-0">
-          View Cart <ChevronRight size={18} strokeWidth={2.5} className="text-emerald-200" />
+        <div className="flex items-center gap-0.5 font-bold text-[15px] text-white pl-2 py-1 border-l border-emerald-700/50 shrink-0">
+          View Cart <ChevronRight size={18} strokeWidth={2.5} className="text-white" />
         </div>
 
       </div>

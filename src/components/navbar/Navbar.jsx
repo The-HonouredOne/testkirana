@@ -22,20 +22,45 @@ const Navbar = memo(({ location = "Sector 45, Gurgaon" }) => {
   // --- STYLING HELPERS ---
   // Desktop Top Nav Link Style (Green underline when active)
   const desktopLinkStyle = ({ isActive }) =>
-    `text-sm font-bold transition-colors py-4 border-b-2 ${isActive
+    `text-sm font-bold transition-colors py-3 border-b-2 ${isActive
       ? "text-[#0f5c46] border-[#0f5c46]"
       : "text-gray-500 border-transparent hover:text-gray-800"
     }`;
 
   // Mobile Bottom Nav Link Style (Green icon/text when active) 
   const mobileLinkStyle = ({ isActive }) =>
-    `flex flex-col items-center justify-center w-full pt-2 pb-1 gap-1 text-[10px] font-extrabold transition-colors ${isActive ? "text-[#0f5c46]" : "text-gray-400 hover:text-gray-600"
+    `flex flex-col items-center justify-center w-full pt-2 pb-1 gap-1 text-[12px] font-extrabold transition-colors 
+  ${isActive ? "text-[#0f5c46]" : "text-gray-500 hover:text-gray-600"
     }`;
 
 
   const navigate = useNavigate();
   const { itemsCount } = useCart();
 
+  const [showBottomNav, setShowBottomNav] = useState(true);
+
+  useEffect(() => {
+    let lastScrollY = window.scrollY;
+
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (Math.abs(currentScrollY - lastScrollY) < 10) return;
+
+      if (currentScrollY > lastScrollY) {
+        // 🔻 Scroll DOWN → HIDE
+        setShowBottomNav(false);
+      } else {
+        // 🔺 Scroll UP → SHOW
+        setShowBottomNav(true);
+      }
+
+      lastScrollY = currentScrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <>
@@ -112,21 +137,21 @@ const Navbar = memo(({ location = "Sector 45, Gurgaon" }) => {
                 {/* Cart Icon (Visible on all screens) */}
                 {/* <Link to="/cart" className="relative p-2 text-gray-600 hover:text-[#0f5c46] hover:bg-green-50 rounded-full transition-colors"> */}
 
-                  <button onClick={() => navigate("/cart")}
-                    className="relative p-2 text-gray-600 hover:text-[#0f5c46] hover:bg-green-50 rounded-full transition-colors">
+                <button onClick={() => navigate("/cart")}
+                  className="relative p-2 text-gray-600 hover:text-[#0f5c46] hover:bg-green-50 rounded-full transition-colors">
 
-                    <ShoppingCart size={22} strokeWidth={2.5} />
-                    {itemsCount > 0 && (
-                      // <span className="ml-1 text-green-600 font-bold">
-                  <span className="absolute top-0 right-0 bg-[#dc2626] text-white text-[9px] font-extrabold h-4 w-4 flex items-center justify-center rounded-full border-2 border-white">
-                        {itemsCount}
-                    
-                  {/* </span>  */}
-                      </span>
-                    )}
-                  </button>
+                  <ShoppingCart size={22} strokeWidth={2.5} />
+                  {itemsCount > 0 && (
+                    // <span className="ml-1 text-green-600 font-bold">
+                    <span className="absolute top-0 right-0 bg-[#dc2626] text-white text-[9px] font-extrabold h-4 w-4 flex items-center justify-center rounded-full border-2 border-white">
+                      {itemsCount}
 
-                  {/* 
+                      {/* </span>  */}
+                    </span>
+                  )}
+                </button>
+
+                {/* 
                 {/* </Link> */}
 
                 {/* Profile Icon (Hidden on mobile as it moves to bottom nav. Uses /Shopdesh route from Comp 1) */}
@@ -155,8 +180,10 @@ const Navbar = memo(({ location = "Sector 45, Gurgaon" }) => {
       {/* ======================================================== */}
       {/* 2. MOBILE BOTTOM NAVBAR (Fixed at bottom)              */}
       {/* ======================================================== */}
-      <div className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-[0_-4px_10px_rgba(0,0,0,0.05)] z-50 pb-safe">
-        <div className="flex justify-around items-center h-16 px-2">
+      <div
+        className={`md:hidden fixed bottom-0 left-0 right-0 bg-white  shadow-[0_-4px_10px_rgba(0,0,0,0.05)] z-50 transition-transform  duration-400 ease-in-out
+  ${showBottomNav ? "translate-y-0" : "translate-y-full"}`}
+      >        <div className="flex justify-around items-center h-14 px-2">
 
           <NavLink to="" className={mobileLinkStyle}>
             <ShoppingBag size={20} strokeWidth={2.5} />
